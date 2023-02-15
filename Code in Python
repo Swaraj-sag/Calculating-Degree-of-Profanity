@@ -1,0 +1,27 @@
+import re
+def calculating_deg_of_profanity(sentence,slurs_set):
+  sentence=re.sub(r'[^\w\s]','',sentence)
+  words=sentence.split()
+  num_slurs = sum(word in set_of_slurs for word in words)
+  return num_slurs / len(words) * 100 if words else 0
+slurs_set=["slur1", "slur2", "slur3"]
+tweets="tweets.txt"
+
+try:
+    with open(tweets,"r") as t:
+      for line in t:
+        profanity_degree=calculating_deg_of_profanity(line.strip(),slurs_set)
+        print(t"Profanity degree for '{line.strip()}': {profanity_degree:.2t}%")
+except FileNotFoundError:
+    print("File not found!")
+except:
+    print("An error occurred!")
+
+
+
+Assumptions:
+
+-The given set of words that indicate racial slurs is a list of strings.
+-A sentence is considered as a sequence of characters separated by a punctuation mark.
+-The degree of profanity for a sentence is the percentage of words in the sentence that match with the set of words that indicate racial slurs.
+ 
